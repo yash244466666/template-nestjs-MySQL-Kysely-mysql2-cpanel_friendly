@@ -1,0 +1,31 @@
+deployment:
+  tasks:
+    # Safety: stop on first error
+    - set -e
+
+    # ---- paths ----
+    - APP_DIR="/home/yashcode/nest.yashcodes.com"
+
+    # ---- use cPanel’s Node 20 toolchain ----
+    # If your selector uses a different major version, change "20" below.
+    - NPM="/opt/cpanel/ea-nodejs20/bin/npm"
+
+    # ---- build inside the repo (needs dev deps) ----
+    - $NPM ci
+    - $NPM run build
+
+    # ---- ship build to the Passenger app root ----
+    - /bin/mkdir -p "$APP_DIR/dist"
+    - /bin/rsync -a --delete dist/ "$APP_DIR/dist/"
+
+    # copy minimal runtime files (DO NOT copy .env)
+    - /bin/cp -f package.json package-lock.json "$APP_DIR/"
+
+    # ---- install production deps in the app root ----
+    - cd "$APP_DIR" && $NPM ci --omit=dev
+
+    # ---- restart Passenger (Node.js app) ----
+    - /bin/mkdir -p "$APP_DIR/tmp"
+    - /usr/bin/touch "$APP_DIR/tmp/restart.txt"
+
+    - echo "✅ Deploy complete"
