@@ -1,4 +1,4 @@
-# AI Agent Onboarding – gp-nestjs-api
+# AI Agent Onboarding – nestjs+MySQL+Kysely+mysql2-cpanel_friendly
 
 This document helps autonomous agents understand the project structure, workflows, and guardrails so they can contribute confidently.
 

@@ -1,4 +1,4 @@
-# gp-nestjs-api
+# nestjs+MySQL+Kysely+mysql2-cpanel_friendly
 
 Modern NestJS REST API starter preconfigured with MySQL, validation, OpenAPI docs, and production tooling.
 

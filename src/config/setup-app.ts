@@ -35,8 +35,10 @@ export function setupApp(
 
   if (options.enableSwagger) {
     const swaggerConfig = new DocumentBuilder()
-      .setTitle('gp-nestjs-api')
-      .setDescription('REST API documentation for gp-nestjs-api')
+      .setTitle('nestjs+MySQL+Kysely+mysql2-cpanel_friendly')
+      .setDescription(
+        'REST API documentation for nestjs+MySQL+Kysely+mysql2-cpanel_friendly',
+      )
       .setVersion('1.0.0')
       .build();
     const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
